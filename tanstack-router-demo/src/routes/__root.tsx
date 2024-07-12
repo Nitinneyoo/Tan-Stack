@@ -19,6 +19,14 @@ export const Route = createRootRoute({
             <ul>
                 <li><Link to="/" activeProps={activeProps}>Home</Link></li>
                 <li><Link to="/profile" activeProps={activeProps}>Profile</Link></li>
+                <li>
+                    <Link
+                        to="/pokemon"
+                        activeProps={activeProps}>
+                        pokemons
+                    </Link>
+                </li>
+
             </ul>
 
             <Outlet />
