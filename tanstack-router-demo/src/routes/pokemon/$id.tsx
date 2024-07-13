@@ -3,13 +3,14 @@ import { getPokemon } from '../../api/pokemon'
 
 export const Route = createFileRoute('/pokemon/$id')({
   component: Pokemon,
-  loader: async ({ params }) => await getPokemon(parseInt(params.id, 10))
+  loader: async ({ params }) => await getPokemon((parseInt(params.id) || 10))
 
 })
 
 function Pokemon() {
   const { id } = Route.useParams()
   const pokemon = Route.useLoaderData()
+  console.log(pokemon)
 
   return (
     <div>
@@ -17,7 +18,11 @@ function Pokemon() {
         {id} :
 
         {pokemon.name}</h1>
-      <p>{pokemon.description}</p>
+      <dl>
+        <dt>description</dt>
+        <dd>{pokemon.description}</dd>
+
+      </dl>
     </div>
   )
 

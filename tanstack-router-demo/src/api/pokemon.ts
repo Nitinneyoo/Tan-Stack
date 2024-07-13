@@ -16,15 +16,14 @@ type Pokemon = {
 };
 
 export async function getPokemonList(): Promise<Pokemon[]> {
-    const response = await fetch(`http://localhost:3001/pokemon`);
-    const data = (await response.json()) as {
-        results: { name: string, url: string }[];
-    };
+    const response = await fetch('http://localhost:3001/pokemon');
+    const data = await response.json();
 
-    return data.results.map((r) => ({
-        id: r.url.split('/').slice(-2, -1)[0],
-        name: r.name,
-    }));
+    return data.results.map((r: { name: string; url: string }) => {
+        const id = r.url.split('/').slice(-2, -1)[0];
+        return {
+            id: id,
+            name: r.name,
+        };
+    });
 }
-
-

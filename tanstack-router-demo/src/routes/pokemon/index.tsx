@@ -3,7 +3,7 @@ import { getPokemonList } from '../../api/pokemon';
 
 export const Route = createFileRoute('/pokemon/')({
   component: PokemonList,
-  loader: await getPokemonList
+  loader: async () => await getPokemonList(),
 });
 
 function PokemonList() {
@@ -14,7 +14,7 @@ function PokemonList() {
       <ul>
         {pokemons.map((pokemon) => (
           <li key={pokemon.id}>
-            <Link to={`/pokemon/$id`} params={{ id: pokemon.id }}>
+            <Link to={`/pokemon/${pokemon.id}`} params={{ id: pokemon.id }}>
               {pokemon.name}
             </Link>
           </li>
@@ -23,3 +23,6 @@ function PokemonList() {
     </>
   );
 }
+
+export default Route;
+
